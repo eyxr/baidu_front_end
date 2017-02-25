@@ -1,0 +1,93 @@
+<html>
+    <head>
+        
+    </head>
+    <body>
+        <div id = 'main'>
+            <p>right click to see the menu</p>
+        </div>
+        <div id="dMenu">
+            <ul>
+                <li>Menu Item 1</li>
+                <li>Menu Item 1</li>
+            </ul>
+        </div>        
+    </body>
+</html>
+
+
+<script>
+        document.oncontextmenu = function (ev) {
+            var e=ev||event;
+            var dmain = document.getElementById('main'); 
+            var dMenu = document.getElementById('dMenu'); 
+            var x = parseInt(e.clientX);
+            var y = parseInt(e.clientY);
+
+            var mainl = parseInt(dmain.offsetLeft);
+            var mainr = mainl + parseInt(dmain.clientWidth); 
+
+            var maint = parseInt(dmain.offsetTop);
+            var mainb = maint + parseInt(dmain.clientHeight);
+
+            // console.log('x and y is ' + x + '     ' + y);
+            // console.log('main l and r is ' + mainl + '       '+mainr);
+            // console.log('main t and b is ' + maint + '       '+mainb);
+
+                            
+            if (x > mainl && x < mainr && y > maint && y< mainb) {
+                dMenu.style.display  = 'block';
+                dMenu.style.left     =  x+'px';
+                dMenu.style.top      =  y+'px';   
+                return false;                 
+            } else {
+                return true;
+            }
+
+        };
+
+        document.onclick=function () {
+            var dMenu=document.getElementById('dMenu');   
+            dMenu.style.display='none';
+        };
+</script>
+<style>
+ul { 
+    list-style-type:none; 
+}
+#main {
+    width: 300px;
+    height: 100px;
+    background-color: #eeeeee;
+}
+#dMenu { 
+    position:absolute; 
+    display:none; 
+}
+
+#dMenu ul { 
+    position:absolute; 
+    float:left; 
+    border:1px solid #979797;
+    background:#f1f1f1; 
+    padding:0px; 
+    width:150px; 
+    overflow:hidden; 
+}
+
+#dMenu ul li { 
+    float:left; 
+    clear:both; 
+    height:24px; 
+    cursor:pointer; 
+    line-height:24px; 
+    white-space:nowrap; 
+    padding:0 30px; 
+    width:100px; 
+    display:inline-block; 
+}
+
+#dMenu ul li:hover { 
+    background: #555555;
+}
+</style>
